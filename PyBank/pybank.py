@@ -1,18 +1,37 @@
-import os
 import csv
 
-net_profit = 0
+# Setting up lists to drop our dates and profits into
+dates = []
+profit = []
 
-# Path to collect data from the Resources folder
-pybank_csv = os.path.join('BudgetData.csv')
-
-# Reading the csv file
+# Setting months variable, which we'll be counting in our data
+months = 0
 
 with open(pybank_csv, "r") as csvfile:
-    budget_data = csv.reader(csvfile, delimiter = ',')
-    header = next(budget_data)
+    csvreader = csv.reader(csvfile)
 
-    for row in budget_data:
-        net_profit = row[1] + net_profit
-    print(net_profit)
+# As we read in each row, we're creating lists of dates and profits, and counting months
+    
+    for row in csvreader:
+        dates.append(row[0])
+        profit.append(row[1])
+        months = months + 1
+        
 
+# Removing first values from our lists, since they're not relevant
+dates.remove("Date")
+profit.remove("Profit/Losses")
+
+# Converting the strings in the profit list to integers. Variable name slightly changed.
+profits = [int(x) for x in profit]
+
+# Summing the profit list gives us the net total
+net_total = sum(profits)
+
+
+
+# Output
+
+print("Financial Analysis")
+print("----------------------------")
+print(f"Total Months : {months}")
