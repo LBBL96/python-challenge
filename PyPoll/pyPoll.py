@@ -43,11 +43,11 @@ with open(pyElect_csv, "r") as csvfile:
             vote_count.append(0)
 
             # The last line of this if loop tells us the length of the candidate name array/list. This is important 
-            # because the next for loop is going to use this length to determine the index of the candidate
-            # within that list. This is the number of different candidates.
+            # because the next for loop is going to use this length to determine the end point of the range
+            # function. This is the number of different candidates.
         num_of_candidates = len(candidates)
         
-        # The range function is really useful here. I can set the end of the range to the number of candidates.
+        # The range function is really useful here. I set the end of the range to the number of candidates.
         # Here's what's really cool about it: the range is dynamic. There's no need to count a candidate's votes
         # until that candidate's name appears. When a new name appears, the length of the candidates list 
         # increments by one, and thus, so does the length of the range we're cycling through.
@@ -62,7 +62,6 @@ with open(pyElect_csv, "r") as csvfile:
                 
 # That's it! Starting at "for row in csvreader:" there are only 8 lines of code! Can you tell I'm proud? ;)
     
-
 # Now that I've read all of election_data.csv, my two lists/arrays are filled. To make the list names
 # shorter for the later print statements, I'm renaming them.     
 names = candidates
