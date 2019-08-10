@@ -67,26 +67,36 @@ with open(pyElect_csv, "r") as csvfile:
 names = candidates
 votes = vote_count
 
+# I realized that I don't need to make a dictionary to connect keys to values because the array indices
+# match up. It was harder to see this in the banking code, so I didn't make that logical leap.
 # A print statement (which I'm leaving out, but definitely looked at along the way!) shows that the two
 # lists look like this: 
 # names = ['Khan', 'Correy', 'Li', "O'Tooley"]
 # votes = [2218231, 704200, 492940, 105630]
 
-# I realized that I don't need to make a dictionary to connect keys to values because the array indices
-# match up. It was harder to see this in the banking code, so I didn't make that logical leap.
-
 # I'll define some variables to make printing simpler.
-print(names)
-print(vote_count)
+total_votes = sum(votes)
 
-#     print("Election Results")
-#     print("--------------------------")
-#     print(f"Total Votes: {total_votes}")
-#     print("--------------------------")
-#     print(f"Khan : {Khan_p}% ({Khan})")
-#     print(f"Correy : {Correy_p}% ({Correy})")
-#     print(f"Li : {Li_p}% ({others})")
-#     print(f"O'Tooley : {OTooley_p}% ({OTooley})")
-#     print("--------------------------")
-#     print(f"Winner: {winner}")
-#     print("--------------------------")
+# This will help me determine the winner.
+most_votes = max(votes)
+
+
+#winner_index = votes[most_votes]
+
+# print(names)
+# print(vote_count)
+# print(total_votes)
+# print(most_votes)
+# print(winner_index)
+
+print("Election Results") 
+print("--------------------------")
+print(f"Total Votes: {total_votes}")
+print("--------------------------")
+print(f"Khan : % ({votes[0]})")
+print(f"Correy : % ({votes[1]})")
+print(f"Li : % ({votes[2]})")
+print(f"O'Tooley : % ({votes[3]})")
+print("--------------------------")
+#print(f"Winner: {winner}")
+print("--------------------------")
