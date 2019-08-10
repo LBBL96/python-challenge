@@ -94,7 +94,7 @@ profit_diff2 = profit_diff[:-1]
 
 average = round(sum(profit_diff2)/(months-1), 2)
 
-# Now I'll output the financial analysis.
+# Now I'll create a variable for the printout so that I can save the variable to a text file.
 
 printout = (
 
@@ -107,6 +107,8 @@ printout = (
     f"Greatest Decrease in Profits: {least}  (${max_dec})\n"
 
 )
+
+# Printing file to the terminal screen.
 
 print(printout)
 
