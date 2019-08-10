@@ -8,6 +8,8 @@ profit = []
 # Setting months variable, which we'll be counting as the data is read into the script.
 months = 0
 
+# Path to the csv and then the command to read it as a csv.
+
 pybank_csv = "budget_data.csv"
 
 with open(pybank_csv, "r") as csvfile:
