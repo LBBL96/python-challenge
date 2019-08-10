@@ -15,7 +15,7 @@ pybank_csv = "budget_data.csv"
 with open(pybank_csv, "r") as csvfile:
     csvreader = csv.reader(csvfile)
 
-# Deleting the header so we don't count it for months or include it in lists
+# Skipping the header so we don't count it for months or include it in lists
     next(csvreader)
 
 # As we read in each row, we're appending the dates and profits, and counting months (which conveniently
@@ -96,25 +96,22 @@ average = round(sum(profit_diff2)/(months-1), 2)
 
 # Now I'll output the financial analysis.
 
-print()
-print("Financial Analysis")
-print("----------------------------")
-print(f"Total Months : {months}")
-print(f"Total: ${net_total}")
-print(f"Average Change: ${average}")
-print(f"Greatest Increase in Profits: {greatest}  (${max_inc})")
-print(f"Greatest Decrease in Profits: {least}  (${max_dec})")
-print()
+printout = (
+
+    "\nFinancial Analysis\n"
+    "----------------------------\n"
+    f"Total Months : {months}\n"
+    f"Total: ${net_total}\n"
+    f"Average Change: ${average}\n"
+    f"Greatest Increase in Profits: {greatest}  (${max_inc})\n"
+    f"Greatest Decrease in Profits: {least}  (${max_dec})\n"
+
+)
+
+print(printout)
 
 # Finally, I'll output the file to txt.
 
-# output_path = "pybank.txt"
-# with open(output_path, 'w') as txt:
-#     print()
-#     print("Financial Analysis")
-#     print("----------------------------")
-#     print(f"Total Months : {months}")
-#     print(f"Total: ${net_total}")
-#     print(f"Average Change: ${average}")
-#     print(f"Greatest Increase in Profits: {greatest}  (${max_inc})")
-#     print(f"Greatest Decrease in Profits: {least}  (${max_dec})")
+output_path = "pybank.txt"
+with open(output_path, 'w') as txt:
+    txt.write(printout)
