@@ -50,7 +50,7 @@ with open(pyElect_csv, "r") as csvfile:
             
             # Here's where that placeholder in vote_count gets filled.
             # Each candidate has his/her own index that acts as a bin. When their name appears in a row,
-            # their bin gets another vote put in it. 
+            # their bin gets another vote put into it. 
             if row[2] == candidates[counter]:
                 vote_count[counter] = vote_count[counter] + 1
 
@@ -60,8 +60,8 @@ with open(pyElect_csv, "r") as csvfile:
 names = candidates
 votes = vote_count
 
-# With this dataset (as opposed PyBank) I realized that I didn't need to make a dictionary to connect 
-# keys to values because the list indices match up. It was harder to see this in the banking code, 
+# With this dataset (as opposed to PyBank) I realized that I didn't need to make a dictionary to connect 
+# keys to values because the list indices match up. It was harder to see this in the banking dataset, 
 # so I didn't make that logical leap until now. I can call the same index in either list to get information
 # for a candidate. The two lists:
 # 
@@ -89,7 +89,7 @@ for vote in votes:
     per = round(unrounded, 2)
     percent.append(per)
 
-# To make it easy to output to text, I'll create a variable called printout and populate it with
+# To make it easy to output to a text file, I'll create a variable called printout and populate it with
 # my total_votes and winner variables and with the three lists called by index. Ideally, it would contain a 
 # dynamic list of candidates. See comment below the printout.
 
@@ -109,7 +109,7 @@ printout = (
 
 # I could print a dynamic list of candidates and their corresponding percentages and votes, but I don't
 # know that I can place it within a variable. Without being able to do that, I can't put it in the printout
-# variable above. If I were simply outputting to the screen, I'd run the block of code below between
+# variable above. If I were simply outputting to the terminal, I'd run the block of code below between
 # print statements for Election Results and Winner.
 
 #  for i in range(0,len(candidates):
