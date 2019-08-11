@@ -77,26 +77,57 @@ votes = vote_count
 # I'll define some variables to make printing simpler.
 total_votes = sum(votes)
 
-# This will help me determine the winner.
+# First we need to determine the max number in the votes list.
 most_votes = max(votes)
 
+# The index function will return the index for the place in the list where most_votes occurs. For simplicity,
+# I'm assigning it to the variable i.
+i = votes.index(most_votes)
 
-#winner_index = votes[most_votes]
+# To find the winner, all I need to do is call the index within the names list.
+winner = names[i]
 
-# print(names)
-# print(vote_count)
-# print(total_votes)
-# print(most_votes)
-# print(winner_index)
+# To get the percentage of votes each candidate received, I'll divide each element in the list "votes"
+# by total_votes. I'll multiply each fraction by 100 and then round to two places. I'll drop each of these 
+# new percentage elements into a new list. Because the indices line up with the votes list, I can simply
+# call by index when I print.
+percent = []
+for vote in votes:
+    unrounded = (vote/total_votes)*100
+    per = round(unrounded, 2)
+    percent.append(per)
 
-print("Election Results") 
-print("--------------------------")
-print(f"Total Votes: {total_votes}")
-print("--------------------------")
-print(f"Khan : % ({votes[0]})")
-print(f"Correy : % ({votes[1]})")
-print(f"Li : % ({votes[2]})")
-print(f"O'Tooley : % ({votes[3]})")
-print("--------------------------")
-#print(f"Winner: {winner}")
-print("--------------------------")
+# In a dataset with more (or less) than four candidates, the print output should automatically adjust.
+
+# for name in names:
+#     print(f"{names[name]} : {percent[name]}% ({votes[name]})\n")
+
+
+# I'll create a variable to use for printing out the results and to make it easier to export to text.
+# Then it's a simple matter of 
+
+printout = (
+
+    "\nElection Results\n"
+    "--------------------------\n"
+    f"Total Votes: {total_votes}\n"
+    "--------------------------\n"
+    f"{names[0]} : {percent[0]}% ({votes[0]})\n"
+    f"{names[1]} : {percent[1]}% ({votes[1]})\n"
+    f"{names[2]} : {percent[2]}% ({votes[2]})\n"
+    f"{names[3]} : {percent[3]}% ({votes[3]})\n"
+    "--------------------------\n"
+    f"Winner: {winner}\n"
+    "--------------------------"
+    )
+
+# Output to screen
+
+print(printout)
+
+
+# Finally, I'll output the file as a text file
+
+output_path = "pypoll.txt"
+with open(output_path, 'w') as txt:
+    txt.write(printout)
