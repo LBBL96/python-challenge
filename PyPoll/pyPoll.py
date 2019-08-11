@@ -16,9 +16,6 @@ pyElect_csv = 'election_data.csv'
 candidates = []
 vote_count = []
 
-# This counter won't be used in the standard incremental way, but rather to form the indices of an array.
-# counter = 0
-
 # Starting the with block to read in the file.
 with open(pyElect_csv, "r") as csvfile:
     csvreader = csv.reader(csvfile)
@@ -36,7 +33,7 @@ with open(pyElect_csv, "r") as csvfile:
         if row[2] not in candidates:
             candidates.append(row[2])
             
-            # This is not an intuitive piece of code, and was the fruit of a lot of experimentation. What this
+            # This next line is not an intuitive piece of code, and was the fruit of a lot of experimentation. What this
             # does is create a placeholder for the new candidate in the vote_count array/list. The next
             # for loop will populate this placeholder.
             vote_count.append(0)
@@ -47,48 +44,46 @@ with open(pyElect_csv, "r") as csvfile:
         num_of_candidates = len(candidates)
         
         # The range function is really useful here. I set the end of the range to the number of candidates.
-        # Here's what's really cool about it: the range is dynamic. There's no need to count a candidate's votes
+        # Because the range end is dynamic, there's no need to count a candidate's votes
         # until that candidate's name appears. When a new name appears, the length of the candidates list 
         # increments by one, and thus, so does the length of the range we're cycling through.
         for counter in range(0, num_of_candidates):
             
-            # Here's where that placeholder in vote_count that I set up in the first for loop gets filled.
-            # Each candidate has his/her own index (in this dataset, 0-3) and the counter will fill the
-            # vote_count list/array with the number of votes that corresponds to the index number in the
-            # candidates list/array.
+            # Here's where that placeholder in vote_count gets filled.
+            # Each candidate has his/her own index (in this dataset, 0-3), and the counter will fill the
+            # vote_count list/array with the number of votes that corresponds to their index number.
             if row[2] == candidates[counter]:
                 vote_count[counter] = vote_count[counter] + 1
-                
-# That's it! Starting at "for row in csvreader:" there are only 8 lines of code! Can you tell I'm proud? ;)
-    
+
+
 # Now that I've read all of election_data.csv, my two lists/arrays are filled. To make the list names
 # shorter for the later print statements, I'm renaming them.     
 names = candidates
 votes = vote_count
 
-# I realized that I don't need to make a dictionary to connect keys to values because the array indices
-# match up. It was harder to see this in the banking code, so I didn't make that logical leap.
-# A print statement (which I'm leaving out, but definitely looked at along the way) shows that the two
-# lists look like this: 
+# With this dataset (as opposed PyBank) I realized that I didn't need to make a dictionary to connect 
+# keys to values because the array indices match up. It was harder to see this in the banking code, 
+# so I didn't make that logical leap until now. I can call the same index in either list to get information
+# for a candidate.
+# A print statement shows that the two lists look like this: 
 # names = ['Khan', 'Correy', 'Li', "O'Tooley"]
 # votes = [2218231, 704200, 492940, 105630]
 
-# I'll define some variables to make printing simpler.
+# To make printing simpler, I'll assign a few variables.
 total_votes = sum(votes)
 
-# First we need to determine the max number in the votes list.
+# To find our winner, we first need to determine the max number in the votes list.
 most_votes = max(votes)
 
-# The index function will return the index for the place in the list where most_votes occurs. For simplicity,
-# I'm assigning it to the variable i.
+# The index function will return the index for most_votes. For simplicity, I'm assigning it to the variable i.
 i = votes.index(most_votes)
 
-# To find the winner, all I need to do is call the most_votes index within the names list.
+# To find the winner's name, all I need to do is call the most_votes index within the names list.
 winner = names[i]
 
 # To get the percentage of votes each candidate received, I'll divide each element in the list "votes"
 # by total_votes, multiply each fraction by 100, and round to two places. I'll drop each of these 
-# percentages into a new list. 
+# percentages into a new list. The indices line up with the other two lists. 
 percent = []
 for vote in votes:
     unrounded = (vote/total_votes)*100
@@ -97,7 +92,7 @@ for vote in votes:
 
 # To make it easy to output to text, I'll create a variable called printout and populate it with
 # my total_votes and winner variables and with the three lists called by index. Ideally, it would contain a 
-# dynamic list of candidates, but I wasn't able to figure out how to do that in time.
+# dynamic list of candidates. See comment below the printout.
 
 printout = (
     "\nElection Results\n"
