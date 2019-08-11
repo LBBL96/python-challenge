@@ -69,7 +69,7 @@ votes = vote_count
 
 # I realized that I don't need to make a dictionary to connect keys to values because the array indices
 # match up. It was harder to see this in the banking code, so I didn't make that logical leap.
-# A print statement (which I'm leaving out, but definitely looked at along the way!) shows that the two
+# A print statement (which I'm leaving out, but definitely looked at along the way) shows that the two
 # lists look like this: 
 # names = ['Khan', 'Correy', 'Li', "O'Tooley"]
 # votes = [2218231, 704200, 492940, 105630]
@@ -84,28 +84,21 @@ most_votes = max(votes)
 # I'm assigning it to the variable i.
 i = votes.index(most_votes)
 
-# To find the winner, all I need to do is call the index within the names list.
+# To find the winner, all I need to do is call the most_votes index within the names list.
 winner = names[i]
 
 # To get the percentage of votes each candidate received, I'll divide each element in the list "votes"
-# by total_votes. I'll multiply each fraction by 100 and then round to two places. I'll drop each of these 
-# new percentage elements into a new list. Because the indices line up with the votes list, I can simply
-# call by index when I print.
+# by total_votes, multiply each fraction by 100, and round to two places. I'll drop each of these 
+# percentages into a new list. 
 percent = []
 for vote in votes:
     unrounded = (vote/total_votes)*100
     per = round(unrounded, 2)
     percent.append(per)
 
-# In a dataset with more (or less) than four candidates, the print output should automatically adjust.
 
-# for name in names:
-#     print(f"{names[name]} : {percent[name]}% ({votes[name]})\n")
-
-
-# I'll create a variable to use for printing out the results and to make it easier to export to text.
-# Then it's a simple matter of 
-
+# To make it easy to output to text, I'll create a variable called printout and populate it with
+# my total_votes and winner variables and with the three lists called by index
 printout = (
 
     "\nElection Results\n"
@@ -122,12 +115,10 @@ printout = (
     )
 
 # Output to screen
-
 print(printout)
 
 
 # Finally, I'll output the file as a text file
-
 output_path = "pypoll.txt"
 with open(output_path, 'w') as txt:
     txt.write(printout)
