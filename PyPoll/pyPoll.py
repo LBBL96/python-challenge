@@ -1,7 +1,7 @@
 # PyPoll
 
 # Something clicked for me when I was doing the banking exercise: I realized that I was getting
-# mentally blocked by thinking in terms of dataframes/spreadsheets. I've done a lot of mathematical
+# mentally blocked trying to figure out how to drop lists into datasets. I've done a lot of mathematical
 # study over the past two years, and the answer suddenly popped out at me: these aren't just lists we're 
 # working with -- they're arrays. When I started thinking about them mathematically, I realized that 
 # operations could be performed on the elements of one list/array using the elements of another. 
