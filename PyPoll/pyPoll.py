@@ -9,7 +9,7 @@
 # As usual, I'm starting by importing the csv library.
 import csv
 
-# Path
+# Path -- this assumes the csv file is in the same folder. The file was too big for me to upload to GitHub.
 pyElect_csv = 'election_data.csv'
 
 # I'm creating two lists: one to collect the names of candidates, and one to collect their vote count.
