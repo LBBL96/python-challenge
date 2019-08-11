@@ -23,7 +23,7 @@ with open(pyElect_csv, "r") as csvfile:
 # Skipping the header so that it won't be included in the lists.
     next(csvreader)
 
-# I'm starting to scan the dataset row by row.
+# I'll scan the dataset row by row.
     for row in csvreader:
 
         # row[2] is the row index that contains the candidate name. I'm looking at the rows one by one
@@ -33,46 +33,45 @@ with open(pyElect_csv, "r") as csvfile:
         if row[2] not in candidates:
             candidates.append(row[2])
             
-            # This next line is not an intuitive piece of code, and was the fruit of a lot of experimentation. What this
+            # This next line is not an intuitive piece of code, and was the fruit of a lot of experimentation. What it
             # does is create a placeholder for the new candidate in the vote_count array/list. The next
             # for loop will populate this placeholder.
             vote_count.append(0)
 
-            # The last line of this if loop tells us the length of the candidate name array/list. This is important 
-            # because the next for loop is going to use this length to determine the end point of the range
-            # function. This is the number of different candidates.
+        # We need to know how many candidates there are so that we can set the end of the range below.
         num_of_candidates = len(candidates)
         
         # The range function is really useful here. I set the end of the range to the number of candidates.
+        # It's interesting to put some print statements in this nested loop and watch what happens.
         # Because the range end is dynamic, there's no need to count a candidate's votes
         # until that candidate's name appears. When a new name appears, the length of the candidates list 
         # increments by one, and thus, so does the length of the range we're cycling through.
         for counter in range(0, num_of_candidates):
             
             # Here's where that placeholder in vote_count gets filled.
-            # Each candidate has his/her own index (in this dataset, 0-3), and the counter will fill the
-            # vote_count list/array with the number of votes that corresponds to their index number.
+            # Each candidate has his/her own index that acts as a bin. When their name appears in a row,
+            # their bin gets another vote put in it. 
             if row[2] == candidates[counter]:
                 vote_count[counter] = vote_count[counter] + 1
 
 
-# Now that I've read all of election_data.csv, my two lists/arrays are filled. To make the list names
+# Now that csv.reader has read all of election_data.csv, my two lists/arrays are filled. To make the list names
 # shorter for the later print statements, I'm renaming them.     
 names = candidates
 votes = vote_count
 
 # With this dataset (as opposed PyBank) I realized that I didn't need to make a dictionary to connect 
-# keys to values because the array indices match up. It was harder to see this in the banking code, 
+# keys to values because the list indices match up. It was harder to see this in the banking code, 
 # so I didn't make that logical leap until now. I can call the same index in either list to get information
-# for a candidate.
-# A print statement shows that the two lists look like this: 
+# for a candidate. The two lists:
+# 
 # names = ['Khan', 'Correy', 'Li', "O'Tooley"]
 # votes = [2218231, 704200, 492940, 105630]
 
-# To make printing simpler, I'll assign a few variables.
+# To make printing simpler, I'll assign a few variables, starting with the total number of votes.
 total_votes = sum(votes)
 
-# To find our winner, we first need to determine the max number in the votes list.
+# To find the winner, I first need to determine the max number in the votes list.
 most_votes = max(votes)
 
 # The index function will return the index for most_votes. For simplicity, I'm assigning it to the variable i.
@@ -82,8 +81,8 @@ i = votes.index(most_votes)
 winner = names[i]
 
 # To get the percentage of votes each candidate received, I'll divide each element in the list "votes"
-# by total_votes, multiply each fraction by 100, and round to two places. I'll drop each of these 
-# percentages into a new list. The indices line up with the other two lists. 
+# by total_votes, multiply each fraction by 100, and round to two places. Then I'll drop each of these 
+# percentages into a new list. The indices of this new list line up with the other two lists. 
 percent = []
 for vote in votes:
     unrounded = (vote/total_votes)*100
