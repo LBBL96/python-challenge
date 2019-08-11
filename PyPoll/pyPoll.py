@@ -5,7 +5,6 @@
 # study over the past two years, and the answer suddenly popped out at me: these aren't just lists we're 
 # working with -- they're arrays. When I started thinking about them mathematically, I realized that 
 # operations could be performed on the elements of one list/array using the elements of another. 
-# I'm really proud of this code. It took a lot of work and a lot of experimentation to get it right.
 
 # As usual, I'm starting by importing the csv library.
 import csv
@@ -122,3 +121,5 @@ print(printout)
 output_path = "pypoll.txt"
 with open(output_path, 'w') as txt:
     txt.write(printout)
+
+# I'm really proud of this code. It took a lot of work and a lot of experimentation to get it right.
