@@ -95,11 +95,11 @@ for vote in votes:
     per = round(unrounded, 2)
     percent.append(per)
 
-
 # To make it easy to output to text, I'll create a variable called printout and populate it with
-# my total_votes and winner variables and with the three lists called by index
-printout = (
+# my total_votes and winner variables and with the three lists called by index. Ideally, it would contain a 
+# dynamic list of candidates, but I wasn't able to figure out how to do that in time.
 
+printout = (
     "\nElection Results\n"
     "--------------------------\n"
     f"Total Votes: {total_votes}\n"
@@ -113,9 +113,17 @@ printout = (
     "--------------------------"
     )
 
+# I could print a dynamic list of candidates and their corresponding percentages and votes, but I don't
+# know that I can place it within a variable. Without being able to do that, I can't put it in the printout
+# variable above. If I were simply outputting to the screen, I'd run the block of code below between
+# print statements for Election Results and Winner.
+
+#  for i in range(0,len(candidates):
+#      print(f"{names[i]} : {percent[i]}% ({votes[i]})")
+
+
 # Output to screen
 print(printout)
-
 
 # Finally, I'll output the file as a text file
 output_path = "pypoll.txt"
