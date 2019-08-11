@@ -23,7 +23,7 @@ with open(pyElect_csv, "r") as csvfile:
 # Skipping the header so that it won't be included in the lists.
     next(csvreader)
 
-# I'll scan the dataset row by row.
+# Scanning the dataset row by row.
     for row in csvreader:
 
         # row[2] is the row index that contains the candidate name. I'm looking at the rows one by one
